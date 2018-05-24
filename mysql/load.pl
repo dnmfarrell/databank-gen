@@ -20,6 +20,11 @@ $db_pass //= $ENV{DATABANK_PASS} || '';
 die 'database user must be provided by --user or ENV DATABANK_USER'
   unless defined $db_user;
 
+my $dbh = DBI->connect("DBI:mysql:database=databank;host=localhost",$db_user, $db_pass);
+$dbh->do('SET SESSION character_set_client=utf8');
+$dbh->do('SET SESSION character_set_connection=utf8');
+$dbh->do('SET SESSION character_set_results=utf8');
+
 my $tmp_path ;
 while (my $csv_path = <$databank_path*csv>) {
   next unless $csv_path =~ /csv$/;
@@ -38,13 +43,7 @@ while (my $csv_path = <$databank_path*csv>) {
   close $in;
   close $out;
 
-  my $dbh = DBI->connect("DBI:mysql:database=databank;host=localhost",$db_user, $db_pass);
-  $dbh->do('SET SESSION character_set_client=utf8');
-  $dbh->do('SET SESSION character_set_connection=utf8');
-  $dbh->do('SET SESSION character_set_results=utf8');
-
   print STDERR "loading: $csv_path into $table\n";
-
   $dbh->do(qq{
     LOAD DATA LOCAL INFILE '$tmp_path'
     INTO TABLE $table
