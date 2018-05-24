@@ -2,14 +2,26 @@
 use strict;
 use warnings;
 use autodie;
-use DBI;
 use Cwd;
+use DBI;
+use Getopt::Long 'GetOptions';
 
-my $databank_path = '/home/dfarrell/Projects/baseballdatabank/core';
+GetOptions(
+  'databank=s' => \my $databank_path,
+  'user=s'     => \my $db_user,
+  'pass=s'     => \my $db_pass,
+) or die "unrecognized arguments passed\n";
+
+die '--databank is required and must be a filepath to a dir'
+  unless $databank_path && -d $databank_path;
+
+$db_user //= $ENV{DATABANK_USER};
+$db_pass //= $ENV{DATABANK_PASS} || '';
+die 'database user must be provided by --user or ENV DATABANK_USER'
+  unless defined $db_user;
+
 my $tmp_path ;
-
-
-while (my $csv_path = <$databank_path/*csv>) {
+while (my $csv_path = <$databank_path*csv>) {
   next unless $csv_path =~ /csv$/;
   my $line_count = -1; # first row is field names
   $tmp_path = cwd() . "/tmp";
@@ -26,7 +38,7 @@ while (my $csv_path = <$databank_path/*csv>) {
   close $in;
   close $out;
 
-  my $dbh = DBI->connect("DBI:mysql:database=databank;host=localhost","roo", "");
+  my $dbh = DBI->connect("DBI:mysql:database=databank;host=localhost",$db_user, $db_pass);
   $dbh->do('SET SESSION character_set_client=utf8');
   $dbh->do('SET SESSION character_set_connection=utf8');
   $dbh->do('SET SESSION character_set_results=utf8');
