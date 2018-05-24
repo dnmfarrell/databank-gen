@@ -7,7 +7,7 @@ CREATE DATABASE `databank` CHARACTER SET utf8 COLLATE utf8_general_ci;
 USE `databank`;
 
 CREATE TABLE IF NOT EXISTS `allstarfull` (
-  `playerID` varchar(9) NOT NULL,
+  `playerID` varchar(10) NOT NULL,
   `yearID` int(11) NOT NULL,
   `gameNum` int(11) NOT NULL,
   `gameID` varchar(12) DEFAULT NULL,
@@ -22,7 +22,7 @@ CREATE TABLE IF NOT EXISTS `appearances` (
   `yearID` int(11) NOT NULL,
   `teamID` varchar(3) NOT NULL,
   `lgID` varchar(2) DEFAULT NULL,
-  `playerID` varchar(9) NOT NULL,
+  `playerID` varchar(10) NOT NULL,
   `G_all` int(11) DEFAULT NULL,
   `GS` int(11) DEFAULT NULL,
   `G_batting` int(11) DEFAULT NULL,
@@ -54,7 +54,7 @@ CREATE TABLE IF NOT EXISTS `awardsmanagers` (
 ) ENGINE=InnoDB CHARSET=utf8;
 
 CREATE TABLE IF NOT EXISTS `awardsplayers` (
-  `playerID` varchar(9) NOT NULL,
+  `playerID` varchar(10) NOT NULL,
   `awardID` varchar(255) NOT NULL,
   `yearID` int(11) NOT NULL,
   `lgID` varchar(2) NOT NULL,
@@ -78,7 +78,7 @@ CREATE TABLE IF NOT EXISTS `awardsshareplayers` (
   `awardID` varchar(25) NOT NULL,
   `yearID` int(11) NOT NULL,
   `lgID` varchar(2) NOT NULL,
-  `playerID` varchar(9) NOT NULL,
+  `playerID` varchar(10) NOT NULL,
   `pointsWon` double DEFAULT NULL,
   `pointsMax` int(11) DEFAULT NULL,
   `votesFirst` double DEFAULT NULL,
@@ -86,7 +86,7 @@ CREATE TABLE IF NOT EXISTS `awardsshareplayers` (
 ) ENGINE=InnoDB CHARSET=utf8;
 
 CREATE TABLE IF NOT EXISTS `batting` (
-  `playerID` varchar(9) NOT NULL,
+  `playerID` varchar(10) NOT NULL,
   `yearID` int(11) NOT NULL,
   `stint` int(11) NOT NULL,
   `teamID` varchar(3) DEFAULT NULL,
@@ -114,7 +114,7 @@ CREATE TABLE IF NOT EXISTS `batting` (
 CREATE TABLE IF NOT EXISTS `battingpost` (
   `yearID` int(11) NOT NULL,
   `round` varchar(10) NOT NULL,
-  `playerID` varchar(9) NOT NULL,
+  `playerID` varchar(10) NOT NULL,
   `teamID` varchar(3) DEFAULT NULL,
   `lgID` varchar(2) DEFAULT NULL,
   `G` int(11) DEFAULT NULL,
@@ -138,14 +138,14 @@ CREATE TABLE IF NOT EXISTS `battingpost` (
 ) ENGINE=InnoDB CHARSET=utf8;
 
 CREATE TABLE IF NOT EXISTS `collegeplaying` (
-  `playerID` varchar(9) NOT NULL,
+  `playerID` varchar(10) NOT NULL,
   `schoolID` varchar(15) NOT NULL,
   `yearID` int(11) NOT NULL,
   PRIMARY KEY (`playerID`, `schoolID`, `yearID`)
 ) ENGINE=InnoDB CHARSET=utf8;
 
 CREATE TABLE IF NOT EXISTS `fielding` (
-  `playerID` varchar(9) NOT NULL,
+  `playerID` varchar(10) NOT NULL,
   `yearID` int(11) NOT NULL,
   `stint` int(11) NOT NULL,
   `teamID` varchar(3) DEFAULT NULL,
@@ -167,7 +167,7 @@ CREATE TABLE IF NOT EXISTS `fielding` (
 ) ENGINE=InnoDB CHARSET=utf8;
 
 CREATE TABLE IF NOT EXISTS `fieldingof` (
-  `playerID` varchar(9) NOT NULL,
+  `playerID` varchar(10) NOT NULL,
   `yearID` int(11) NOT NULL,
   `stint` int(11) NOT NULL,
   `Glf` int(11) DEFAULT NULL,
@@ -177,7 +177,7 @@ CREATE TABLE IF NOT EXISTS `fieldingof` (
 ) ENGINE=InnoDB CHARSET=utf8;
 
 CREATE TABLE IF NOT EXISTS `fieldingofsplit` (
-  `playerID` varchar(9) NOT NULL,
+  `playerID` varchar(10) NOT NULL,
   `yearID` int(11) NOT NULL,
   `stint` int(11) NOT NULL,
   `teamID` varchar(3) DEFAULT NULL,
@@ -199,7 +199,7 @@ CREATE TABLE IF NOT EXISTS `fieldingofsplit` (
 ) ENGINE=InnoDB CHARSET=utf8;
 
 CREATE TABLE IF NOT EXISTS `fieldingpost` (
-  `playerID` varchar(9) NOT NULL,
+  `playerID` varchar(10) NOT NULL,
   `yearID` int(11) NOT NULL,
   `teamID` varchar(3) DEFAULT NULL,
   `lgID` varchar(2) DEFAULT NULL,
@@ -312,7 +312,7 @@ CREATE TABLE IF NOT EXISTS `people` (
 ) ENGINE=InnoDB CHARSET=utf8;
 
 CREATE TABLE IF NOT EXISTS `pitching` (
-  `playerID` varchar(9) NOT NULL,
+  `playerID` varchar(10) NOT NULL,
   `yearID` int(11) NOT NULL,
   `stint` int(11) NOT NULL,
   `teamID` varchar(3) DEFAULT NULL,
@@ -346,7 +346,7 @@ CREATE TABLE IF NOT EXISTS `pitching` (
 ) ENGINE=InnoDB CHARSET=utf8;
 
 CREATE TABLE IF NOT EXISTS `pitchingpost` (
-  `playerID` varchar(9) NOT NULL,
+  `playerID` varchar(10) NOT NULL,
   `yearID` int(11) NOT NULL,
   `round` varchar(10) NOT NULL,
   `teamID` varchar(3) DEFAULT NULL,
@@ -383,7 +383,7 @@ CREATE TABLE IF NOT EXISTS `salaries` (
   `yearID` int(11) NOT NULL,
   `teamID` varchar(3) NOT NULL,
   `lgID` varchar(2) NOT NULL,
-  `playerID` varchar(9) NOT NULL,
+  `playerID` varchar(10) NOT NULL,
   `salary` double DEFAULT NULL,
   PRIMARY KEY (`yearID`,`teamID`,`lgID`,`playerID`)
 ) ENGINE=InnoDB CHARSET=utf8;
